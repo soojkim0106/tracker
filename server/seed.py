@@ -1,14 +1,30 @@
 from app import app
 from config import db
-from models.goal import Goal
+from models.task import Task
 
 with app.app_context():
-    Goal.query.delete()
-    print("Deleted all goals")
-    
-    goal1 = Goal(title="Finish backend", description= "Tracker backend must finish by EOD", status="In Progress")
-    
-    db.session.add(goal1)
+    Task.query.delete()
+    print("Deleted all tasks")
+
+    task1 = Task(
+        title="Finish backend",
+        description="Tracker backend must finish by EOD",
+        status="Completed",
+    )
+    task2 = Task(
+        title="Finish frontend",
+        description="Tracker frontend must finish by EOD",
+        status="In Progress",
+    )
+    task3 = Task(
+        title="Finish testing",
+        description="Tracker design must finish by EOD",
+        status="Not Started",
+    )
+
+    tasks = [task1, task2, task3]
+
+    db.session.add_all(tasks)
     db.session.commit()
-    
-    print("Added a goal")
+
+    print("Added task")

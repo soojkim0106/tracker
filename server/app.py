@@ -4,7 +4,7 @@ from config import app, db, api
 
 import os
 
-from models.goal import Goal
+from models.task import Task
 
 STATUS = ["In Progress", "Not Started", "Completed"]
 
@@ -14,65 +14,65 @@ def index():
     return "<h1>Welcome to the Task API</h1>"
 
 
-class Goals(Resource):
+class Tasks(Resource):
     def get(self):
         try:
-            goals = [goal.to_dict() for goal in Goal.query.all()]
+            tasks = [task.to_dict() for task in Task.query.all()]
 
-            return goals, 200
+            return tasks, 200
         except Exception as e:
             return {"message": "Something went wrong", "error": str(e)}, 404
 
     def post(self):
         try:
             data = request.get_json()
-            new_goal = Goal(**data)
+            new_task = Task(**data)
 
-            db.session.add(new_goal)
+            db.session.add(new_task)
             db.session.commit()
-            return new_goal.to_dict(), 201
+            return new_task.to_dict(), 201
         except Exception as e:
             db.session.rollback()
             return {"message": "Something went wrong", "error": str(e)}, 400
 
 
-class GoalById(Resource):
+class TaskById(Resource):
     def get(self, id):
-        if not (goal := Goal.query.get(id)):
-            return {"message": "Goal not found"}, 404
-        return goal.to_dict(), 200
+        if not (task := Task.query.get(id)):
+            return {"message": "Task not found"}, 404
+        return task.to_dict(), 200
 
     def patch(self, id):
-        if not (goal := Goal.query.get(id)):
-            return {"message": "Goal not found"}, 404
+        if not (task := Task.query.get(id)):
+            return {"message": "Task not found"}, 404
         try:
             data = request.get_json()
-            goal = Goal.query.get(id)
+            task = Task.query.get(id)
             
             for attr in data:
-                setattr(goal, attr, data[attr])
+                setattr(task, attr, data[attr])
             if "status" in data and data["status"] in STATUS:
-                goal.status = data["status"]
+                task.status = data["status"]
             db.session.commit()
-            return goal.to_dict(), 202
+            return task.to_dict(), 202
         except Exception as e:
             db.session.rollback()
             return {"message": "Something went wrong", "error": str(e)}, 400
 
     def delete(self, id):
         try:
-            if not (goal := Goal.query.get(id)):
-                return {"message": "Goal not found"}, 404
-            db.session.delete(goal)
+            if not (task := Task.query.get(id)):
+                return {"message": "Task not found"}, 404
+            db.session.delete(task)
             db.session.commit()
-            return {"message": "Goal deleted"}, 204
+            return {"message": "Task deleted"}, 204
         except Exception as e:
             db.session.rollback()
             return {"message": "Something went wrong", "error": str(e)}, 400
 
 
-api.add_resource(Goals, "/goals")
-api.add_resource(GoalById, "/goals/<int:id>")
+api.add_resource(Tasks, "/tasks")
+api.add_resource(TaskById, "/tasks/<int:id>")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

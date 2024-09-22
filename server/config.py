@@ -1,8 +1,8 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy # type: ignore
-from flask_migrate import Migrate # type: ignore
-from flask_restful import Api # type: ignore
-from flask_cors import CORS # type: ignore
+from flask_sqlalchemy import SQLAlchemy 
+from flask_migrate import Migrate 
+from flask_restful import Api 
+from flask_cors import CORS 
 import os
 
 app = Flask(__name__)
