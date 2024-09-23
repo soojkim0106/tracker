@@ -6,8 +6,6 @@ import os
 
 from models.task import Task
 
-STATUS = ["In Progress", "Not Started", "Completed"]
-
 
 @app.route("/")
 def index():
@@ -51,8 +49,6 @@ class TaskById(Resource):
             
             for attr in data:
                 setattr(task, attr, data[attr])
-            if "status" in data and data["status"] in STATUS:
-                task.status = data["status"]
             db.session.commit()
             return task.to_dict(), 202
         except Exception as e:
