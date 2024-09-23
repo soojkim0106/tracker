@@ -1,18 +1,19 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy 
-from flask_migrate import Migrate 
-from flask_restful import Api 
-from flask_cors import CORS 
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_restful import Api
+from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 
 load_dotenv()
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static', static_url_path='/static')
+
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///task.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-client_folder = os.path.join(os.getcwd(), "..","client")
+client_folder = os.path.join(os.getcwd(), "..", "client")
 dist_folder = os.path.join(client_folder, "build")
 
 db = SQLAlchemy(app)
