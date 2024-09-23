@@ -10,7 +10,7 @@ from models.task import Task
 def index(filename):
     if not filename:
         filename = "index.html"
-        return send_from_directory(dist_folder, filename)
+    return send_from_directory(dist_folder, filename)
 
 # @app.route("/")
 # def index():
