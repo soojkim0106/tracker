@@ -8,7 +8,12 @@ import os
 
 load_dotenv()
 
-app = Flask(__name__, static_folder='static', static_url_path='/static')
+app = Flask(
+    __name__,
+    static_url_path='',
+    static_folder='../client/build',
+    template_folder='../client/build'
+)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///task.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
