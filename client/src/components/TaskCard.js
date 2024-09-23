@@ -11,7 +11,7 @@ const TaskCard = ({ task, onEdit, onDelete, onCompleteTask }) => {
         <div className="task-item">
           <strong>Title:</strong> {title}
         </div>
-        <div className="task-item">
+        <div className="description">
           <strong>| Description:</strong> {description}
         </div>
       </div>

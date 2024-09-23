@@ -17,6 +17,17 @@
   gap: 20px;
 }
 
+.task-card .description {
+  position: absolute;
+  left: 35%;/* Example left coordinate */
+}
+
+@media (max-width: 750px) {
+  .description {
+    display: none;
+  }
+}
+
 .task-actions {
   display: none;
   position: absolute;
@@ -76,6 +87,6 @@
   margin-left: 5px;
 }
 
-.task-item{
+/* .task-item{
   width: in-line;
-}
+} */

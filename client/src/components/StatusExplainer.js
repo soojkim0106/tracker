@@ -3,7 +3,7 @@ import "../css/StatusExplainer.css";
 const StatusExplainer = () => {
   return (
     <footer className="status-footer">
-      <h3>Color Directory</h3>
+      {/* <h3>Color Directory</h3> */}
       <div className="item-box">
         <p className="red">
         Not Started
