@@ -4,7 +4,6 @@ from config import app, db, api, dist_folder
 
 from models.task import Task
 
-STATUS = ["In Progress", "Not Started", "Completed"]
 
 @app.route("/", defaults={"filename": ""})
 @app.route("/<path:filename>")
@@ -55,8 +54,6 @@ class TaskById(Resource):
             
             for attr in data:
                 setattr(task, attr, data[attr])
-            if "status" in data and data["status"] in STATUS:
-                task.status = data["status"]
             db.session.commit()
             return task.to_dict(), 202
         except Exception as e:
