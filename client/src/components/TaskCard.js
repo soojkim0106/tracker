@@ -1,7 +1,7 @@
 import "../css/TaskCard.css";
 
 const TaskCard = ({ task, onEdit, onDelete, onCompleteTask }) => {
-  const { id, title, description, status } = task;
+  const { title, description, status } = task;
   const statusClass = status.toLowerCase().replace(" ", "-");
 
 
