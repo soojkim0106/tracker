@@ -13,9 +13,9 @@ def index(filename):
         filename = "index.html"
         return send_from_directory(dist_folder, filename)
 
-@app.route("/")
-def index():
-    return "<h1>Welcome to the Task API</h1>"
+# @app.route("/")
+# def index():
+#     return "<h1>Welcome to the Task API</h1>"
 
 
 class Tasks(Resource):
