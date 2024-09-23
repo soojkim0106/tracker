@@ -2,8 +2,6 @@ from flask import request, make_response, jsonify
 from flask_restful import Resource
 from config import app, db, api
 
-import os
-
 from models.task import Task
 
 STATUS = ["In Progress", "Not Started", "Completed"]
