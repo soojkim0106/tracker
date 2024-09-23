@@ -38,12 +38,12 @@ class Tasks(Resource):
 
 class TaskById(Resource):
     def get(self, id):
-        if not (task := Task.query.get(id)):
+        if not (task := db.session.get(Task, id)):
             return {"message": "Task not found"}, 404
         return task.to_dict(), 200
 
     def patch(self, id):
-        if not (task := Task.query.get(id)):
+        if not (task := db.session.get(Task, id)):
             return {"message": "Task not found"}, 404
         try:
             data = request.get_json()
@@ -61,7 +61,7 @@ class TaskById(Resource):
 
     def delete(self, id):
         try:
-            if not (task := Task.query.get(id)):
+            if not (task := db.session.get(Task, id)):
                 return {"message": "Task not found"}, 404
             db.session.delete(task)
             db.session.commit()

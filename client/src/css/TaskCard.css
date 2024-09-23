@@ -1,0 +1,81 @@
+
+.task-card {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  position: relative;
+  transition: box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-content {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.task-actions {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.task-card:hover .task-actions {
+  display: block;
+}
+
+.task-edit-button,
+.task-delete-button,
+.task-done-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.task-edit-button i,
+.task-delete-button i {
+  font-size: 16px;
+  color: #555;
+}
+
+.task-edit-button:hover i {
+  color: orange;
+}
+
+.task-delete-button:hover i {
+  color: red;
+}
+
+.task-done-button:hover i {
+  color: green;
+}
+
+.task-card.not-started {
+  background-color: #f8d7da;
+}
+
+.task-card.in-progress {
+  background-color: #fff3cd;
+}
+
+.task-card.completed {
+  background-color: #d4edda;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.completed-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.task-item{
+  width: in-line;
+}

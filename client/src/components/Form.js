@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Form.css'; // Import the CSS file
+import "../css/Form.css";
 
 const Form = ({ addTask }) => {
   const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Form = ({ addTask }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch('http://localhost:5555/tasks', {
+    fetch('/tasks', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -27,7 +27,6 @@ const Form = ({ addTask }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log('Goal added:', data);
         addTask(data); 
         setFormData({
           title: '',
@@ -35,48 +34,51 @@ const Form = ({ addTask }) => {
           status: 'Not Started'
         });
       })
-      .catch((error) => console.error('Error adding goal:', error));
+      .catch((error) => console.error('Error adding task:', error));
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="description">Description:</label>
-        <textarea
-          id="description"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-          required
-        />
-      </div>
-      <div>
-        <label htmlFor="status">Status:</label>
-        <select
-          id="status"
-          name="status"
-          value={formData.status}
-          onChange={handleChange}
-          required
-        >
-          <option value="Not Started">Not Started</option>
-          <option value="In Progress">In Progress</option>
-          <option value="Completed">Completed</option>
-        </select>
-      </div>
-      <button type="submit">Add Goal</button>
-    </form>
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="horizontal-form">
+        <div className="form-group">
+          <label className="title"></label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Name your task"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label className="description"></label>
+          <input
+            id="description"
+            name="description"
+            placeholder="Describe your task"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label className="status"></label>
+          <select
+            id="status"
+            name="status"
+            value={formData.status}
+            onChange={handleChange}
+            required
+          >
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+          </select>
+        </div>
+        <button className="form-button" type="submit">Add Task</button>
+      </form>
+    </div>
   );
 };
 

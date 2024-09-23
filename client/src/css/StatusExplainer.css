@@ -1,0 +1,39 @@
+.status-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .item-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .item-box p {
+    margin: 0 10px;
+  }
+  
+  .red {
+    background-color: #f8d7da;
+    display: inline;
+  }
+  
+  .yellow {
+    background-color: #fff3cd;
+    display: inline; 
+  }
+  
+  .green {
+    background-color: #d4edda;
+    display: inline; 
+  }
+  
+  p {
+    display: inline;
+    margin: 0;
+  }
