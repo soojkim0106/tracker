@@ -1,11 +1,17 @@
-from flask import request, make_response, jsonify
+from flask import request, send_from_directory
 from flask_restful import Resource
-from config import app, db, api
+from config import app, db, api, dist_folder
 
 from models.task import Task
 
 STATUS = ["In Progress", "Not Started", "Completed"]
 
+@app.route("/", defaults={"filename": ""})
+@app.route("/<path:filename>")
+def index(filename):
+    if not filename:
+        filename = "index.html"
+        return send_from_directory(dist_folder, filename)
 
 @app.route("/")
 def index():

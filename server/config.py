@@ -9,12 +9,16 @@ import os
 load_dotenv()
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///task.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+client_folder = os.path.join(os.getcwd(), "..","client")
+dist_folder = os.path.join(client_folder, "dist")
 
 db = SQLAlchemy(app)
 api = Api(app)
 migrate = Migrate(app, db)
 
+app.config["SESSION_SQLALCHEMY"] = db
 
 CORS(app)
